@@ -8,9 +8,9 @@
 }
 a {
 	color: #006496;
+	text-decoration: none;
 }
 table {
-	width: 720px;
 	margin: 0 auto;
 	margin-top: 15px;
 }
@@ -21,11 +21,14 @@ table td {
 	line-height: 30px;
 }
 table th {
-	border-bottom: solid 2px #d8d8d8;
+	border-bottom: solid 1px #d8d8d8;
 	border-top: solid 1px #d8d8d8;
 	width: 200px;
 	height: 20px;
 	line-height: 30px;
+	font-weight: 700;
+}
+strong {
 	font-weight: 700;
 }
 .place {
@@ -35,6 +38,7 @@ table th {
 .name {
 	min-width: 150px;
 	padding-left: 10px; 
+	text-align: left;
 	border-right: solid 1px #d8d8d8;
 }
 .statistic {
@@ -42,7 +46,9 @@ table th {
 	padding-right: 10px;
 	text-align: right;
 }
-.
+.pointer {
+	cursor: pointer;
+}
 .bgGreen {
 	background: #7fd498;
 }
@@ -55,14 +61,42 @@ table th {
 .bgGray {
 	background: #f9f9f7;
 }
+.cBlue {
+	color: #006496;
+}
 .bold {
 	font-weight: 700;
 }
 .f13 {
 	font-size: 13px;
 }
-.f11 {
+.legend {
 	font-size: 11px;
+	margin: 10px auto;
+	max-width: 720px;
+	width: 100%;
+	padding-left: 10px;
+}
+.flag {
+	width: 16px;
+	height: 12px;
+	line-height: 30px;
+	font-size: 0px;
+	margin-right: 4px;
+	display: inline-block;
+}
+@media screen and (min-width: 720px) {
+	table {
+		width: 720px;
+	}
+}
+@media screen and (max-width: 720px) {
+	table {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
 }
 @media screen and (max-width: 660px) {
 	.goals {
@@ -70,7 +104,7 @@ table th {
 	}
 }
 @media screen and (max-width: 600px) {
-	.conceded_goals {
+	.conGoals {
 		display: none;
 	}
 }
