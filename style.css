@@ -1,0 +1,91 @@
+* {
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	color: #222;
+}
+a {
+	color: #006496;
+}
+table {
+	width: 720px;
+	margin: 0 auto;
+	margin-top: 15px;
+}
+table td {
+	border-bottom: solid 1px #d8d8d8;
+	width: 200px;
+	height: 20px;
+	line-height: 30px;
+}
+table th {
+	border-bottom: solid 2px #d8d8d8;
+	border-top: solid 1px #d8d8d8;
+	width: 200px;
+	height: 20px;
+	line-height: 30px;
+	font-weight: 700;
+}
+.place {
+	width: 30px;
+	padding-left: 10px;
+}
+.name {
+	min-width: 150px;
+	padding-left: 10px; 
+	border-right: solid 1px #d8d8d8;
+}
+.statistic {
+	width: 40px;
+	padding-right: 10px;
+	text-align: right;
+}
+.
+.bgGreen {
+	background: #7fd498;
+}
+.bgLightGreen {
+	background: #cceed6;
+}
+.bgRed {
+	background: #ff99b1;
+}
+.bgGray {
+	background: #f9f9f7;
+}
+.bold {
+	font-weight: 700;
+}
+.f13 {
+	font-size: 13px;
+}
+.f11 {
+	font-size: 11px;
+}
+@media screen and (max-width: 660px) {
+	.goals {
+		display: none;
+	}
+}
+@media screen and (max-width: 600px) {
+	.conceded_goals {
+		display: none;
+	}
+}
+@media screen and (max-width: 540px) {
+	.win {
+		display: none;
+	}
+}
+@media screen and (max-width: 480px) {
+	.draw {
+		display: none;
+	}
+}
+@media screen and (max-width: 420px) {
+	.lose {
+		display: none;
+	}
+}
