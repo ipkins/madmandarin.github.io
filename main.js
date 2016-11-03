@@ -48,10 +48,13 @@ var main = function(option) {
 			view.createCell(tr, 'Проп', 'statistic cBlue pointer conGoals', 'th', 6);
 			view.createCell(tr, 'О', 'statistic cBlue pointer bgGray', 'th', 7);
 
+
 			thead.appendChild(tr);
 			table.appendChild(thead);
 			var tbody 	= document.createElement("tbody");
 			table.appendChild(tbody);
+
+
 			var tfoot 	= document.createElement("tfoot");
 			tr = document.createElement("tr");
 			var td = document.createElement("td");
