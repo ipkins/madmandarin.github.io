@@ -5,17 +5,18 @@ var mmCryptoCourseCreater = function(option) {
 	var view = {
 		update: function(item, name, i) {
 			var block = document.getElementById(name);
+			var blockPar = document.getElementById(name+'par');
 			if (block != null) {
 				var oldVal = block.innerHTML;
 				block.innerHTML = item.price;
 				if (i != 1) {
 					if (oldVal > item.price) {
-						block.className = "cDown";
+						blockPar.className = "cDown";
 					} else if (oldVal < item.price) {
-						block.className = "cUp";
+						blockPar.className = "cUp";
 					}
 				}
-				console.log('update: '+name)
+				//console.log('update: '+name)
 			}
 
 		}

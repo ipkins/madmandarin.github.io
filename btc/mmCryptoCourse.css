@@ -1,6 +1,16 @@
-.red {
-	color: red;
+.cUp { 
+	color: #1db954; 
+} 
+.cUp:before {
+	content: '▲';
+	color: #1db954;
+	display: inline-block;
 }
-.green {
-	color: green;
+.cDown:before {
+	content: '▼';
+	color: #b91d54;
+	display: inline-block;
+}
+.cDown { 
+	color: #b91d54; 
 }
