@@ -5,7 +5,16 @@ var mmCryptoCourseCreater = function(option) {
 	var view = {
 		update: function(item, name) {
 			var block = document.getElementById(name);
+			var oldVal = block.innerHTML;
 			block.innerHTML = item.price;
+			if (oldVal > item.price) {
+				block.className = "red";
+			} else if (oldVal < item.price) {
+				block.className = "green";
+			} else {
+				block.className = "";
+			}
+			
 			console.log(item)
 		}
 	};
@@ -110,9 +119,9 @@ var mmCryptoCourseCreater = function(option) {
 
 		start: function() {
 			model.updateCourse(view.update);
-			/*this.timer = setInterval(function() {
+			this.timer = setInterval(function() {
 				model.updateCourse(view.updade);
-			}, 2000)*/
+			}, 2000)
 		}
 	};
 /* --------------------------- end controller -------------------------- */
