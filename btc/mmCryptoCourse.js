@@ -120,7 +120,7 @@ var mmCryptoCourseCreater = function(option) {
 		start: function() {
 			model.updateCourse(view.update);
 			this.timer = setInterval(function() {
-				model.updateCourse(view.updade);
+				model.updateCourse(view.update);
 			}, 2000)
 		}
 	};
