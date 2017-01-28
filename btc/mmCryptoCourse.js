@@ -3,19 +3,21 @@ var mmCryptoCourseCreater = function(option) {
 	'use strict';
 
 	var view = {
-		update: function(item, name) {
+		update: function(item, name, i) {
 			var block = document.getElementById(name);
-			var oldVal = block.innerHTML;
-			block.innerHTML = item.price;
-			if (oldVal > item.price) {
-				block.className = "red";
-			} else if (oldVal < item.price) {
-				block.className = "green";
-			} else {
-				block.className = "";
+			if (block != null) {
+				var oldVal = block.innerHTML;
+				block.innerHTML = item.price;
+				if (i != 1) {
+					if (oldVal > item.price) {
+						block.className = "cDown";
+					} else if (oldVal < item.price) {
+						block.className = "cUp";
+					}
+				}
+				console.log('update: '+name)
 			}
-			
-			console.log(item)
+
 		}
 	};
 /* ----------------------------- end view ------------------------------ */
@@ -23,6 +25,7 @@ var mmCryptoCourseCreater = function(option) {
 /* ---------------------------- begin model ---------------------------- */
 	
 	var model = {
+		i: 0,
 		urlUpdates: 'https://api.cryptonator.com/api/full/',
 
 		course: {
@@ -97,7 +100,8 @@ var mmCryptoCourseCreater = function(option) {
 				} else {
 					model.course[name].price = model.course[name].json.ticker.price;
 				}
-				callback(model.course[name], name);
+				model.i = model.i + 1;
+				callback(model.course[name], name, model.i);
 			};
 			var link = this.urlUpdates + para;
 			this.getJSON(link, parseJson, callback);
