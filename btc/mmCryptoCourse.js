@@ -40,7 +40,7 @@ var mmCryptoCourseCreater = function(option) {
 				price: null,
 				json: null
 			},
-			'DSH': {
+			'DASH': {
 				market: 'BTC-E',
 				price: null,
 				json: null
