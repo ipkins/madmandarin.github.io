@@ -43,7 +43,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<ul class="nav nav-tabs">
-				<li ng-class="{	'active' : true }" ng-repeat="(key, value) in table" ng-click="setTable(key)">{{value.name}}</li>
+				<li ng-class="{	'active' : isActive(key) }" ng-repeat="(key, value) in table" ng-click="setTable(key)"><a>{{value.name}}</a></li>
 			</ul>
 		</div>
 		<div class="col-md-3 text-right">

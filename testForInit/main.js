@@ -58,5 +58,8 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		console.log($scope.data);
 	}
 
+	$scope.isActiveTable = function(tableId) {
+		return $scope.activeTable === tableId;
+	}
 	console.log($scope.table);
 }]);
