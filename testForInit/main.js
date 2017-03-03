@@ -4,10 +4,7 @@ var testFrontEnd = angular.module('testFrontEnd', ['ngResource']);
 
 /* Factory */
 testFrontEnd.factory('Data', ['$resource', function($resource){
-	return $resource('https://madmandarin.github.io/testForInit/:table.:format', {
-		table: 'Table1',
-		format: 'json'
-	});
+	return $resource('https://madmandarin.github.io/testForInit/Table1.json', {});
 }])
 
 
