@@ -15,12 +15,14 @@
 
 	<style>
 		.tdName {
-			float: left;
+			width: calc(100% - 20px);
 			display: inline-block;
 			color: #333;
 		}
 		.sortBtn {
-			float: right;
+			width: 20px;
+			background: #fff;
+			display: inline-block;
 			color: #333;
 			color: #999;
 			text-align: right;
@@ -39,12 +41,21 @@
 			cursor: pointer;
 			color: #333;
 		}
+		.whiteLine {
+			position: relative;
+		}
+		.whiteLine:after {
+			position: absolute;
+			height: 5px;
+			width: 100%;
+			bottom: 0;
+		}
 	</style>
 </head>
 <body>
 <div class="container" ng-controller="tableCtrl">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-9 whiteLine">
 			<ul class="nav nav-tabs">
 				<li ng-class="{	'navTable' : true, 'active' : isActiveTable(key) }" ng-repeat="(key, value) in table" ng-click="setTable(key)"><a>{{value.name}}</a></li>
 			</ul>
