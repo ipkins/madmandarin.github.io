@@ -1,4 +1,8 @@
 'use strict';
+
+var links = ['Table1.json', 'Table2.json']
+
+
 var testFrontEnd = angular.module('testFrontEnd', []);
 
 
@@ -37,5 +41,25 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		console.log(response);
 	});
 
+	var table = []
 	
+	links.forEach(function(item, i, arr) {
+		$http({
+		method: 'GET',
+		url: 'item'
+		}).then(function successCallback(response) {
+			for (var data in response.data) {
+				var obj = {
+					name: data,
+					data: response.data[data]
+				}
+				table.push(obj);
+			}
+			
+		}, function errorCallback(response) {
+			console.log(response);
+		});
+	});
+
+	console.log(table);
 }]);
