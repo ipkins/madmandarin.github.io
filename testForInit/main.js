@@ -20,7 +20,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 				}
 				table.push(obj);
 			}
-			
+			$scope.setTable(0);			
 		}, function errorCallback(response) {
 			console.log(response);
 		});
@@ -50,8 +50,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		return $scope.sortField === fieldName && $scope.reverse;
 	}
 
-	$scope.activeTable = 0;
-	$scope.data = table[$scope.activeTable].data;
+	$scope.activeTable = undefined;
 
 	$scope.setTable = function(tableId) {
 		$scope.data = table[tableId].data;
