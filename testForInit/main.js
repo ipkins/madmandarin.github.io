@@ -53,6 +53,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 	$scope.activeTable = undefined;
 
 	$scope.setTable = function(tableId) {
+		console.log(tableId);
 		$scope.data = $scope.table[tableId].data;
 		$scope.activeTable = tableId;
 	}
