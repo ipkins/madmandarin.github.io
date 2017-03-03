@@ -72,7 +72,7 @@
 			<thead>
 				<tr>
 					<td ng-repeat="(key, value) in data[0]" ng-click="sort(key)"><div class="tdName">{{key}}</div><div class="sortBtn"><span  ng-class="{	'glyphicon' : true,
-								'glyphicon glyphicon-sort' : isSort(key),
+								'glyphicon glyphicon-sort' : !isSort(key),
 								'glyphicon-sort-by-attributes' : isSortUp(key),
 								'glyphicon-sort-by-attributes-alt' : isSortDown(key),}"></span></div></td>
 				</tr>
