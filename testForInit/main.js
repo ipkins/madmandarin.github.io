@@ -32,21 +32,12 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		return $scope.sortField === fieldName && $scope.reverse;
 	}
 
-	$http({
-		method: 'GET',
-		url: 'Table1.json'
-	}).then(function successCallback(response) {
-		$scope.data = response.data.tenders;
-	}, function errorCallback(response) {
-		console.log(response);
-	});
-
 	var table = []
 	
 	links.forEach(function(item, i, arr) {
 		$http({
 		method: 'GET',
-		url: 'item'
+		url: item
 		}).then(function successCallback(response) {
 			for (var data in response.data) {
 				var obj = {
