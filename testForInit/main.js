@@ -7,7 +7,7 @@ var testFrontEnd = angular.module('testFrontEnd', []);
 
 /* Controllers */
 testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http){
-	var table = []
+	$scope.table = []
 	links.forEach(function(item, i, arr) {
 		$http({
 		method: 'GET',
@@ -18,7 +18,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 					name: data,
 					data: response.data[data]
 				}
-				table.push(obj);
+				$scope.table.push(obj);
 			}
 			$scope.setTable(0);			
 		}, function errorCallback(response) {
@@ -53,7 +53,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 	$scope.activeTable = undefined;
 
 	$scope.setTable = function(tableId) {
-		$scope.data = table[tableId].data;
+		$scope.data = $scope.table[tableId].data;
 		$scope.activeTable = tableId;
 	}
 }]);
