@@ -43,7 +43,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', 'Data', function($scope
 		format: 'json'
 	}, function() {
 		alert('yep');
-	}, function() {
-		alert('none');
+	}, function(error) {
+		console.log(error);
 	});
 }]);
