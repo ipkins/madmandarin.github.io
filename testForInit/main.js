@@ -38,7 +38,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', 'Data', function($scope
 		return $scope.sortField === fieldName && $scope.reverse;
 	}
 
-	$scope.data = Data.query({
+	$scope.data = Data.get({
 		table: 'Table2',
 		format: 'json'
 	}, function() {
