@@ -4,7 +4,10 @@ var testFrontEnd = angular.module('testFrontEnd', ['ngResource']);
 
 /* Factory */
 testFrontEnd.factory('Data', ['$resource', function($resource){
-	return $resource('https://madmandarin.github.io/testForInit/Table1.json', {});
+	return $resource('https://madmandarin.github.io/testForInit/:table.:format', {
+		table: 'Table1',
+		format: 'json'
+	});
 }])
 
 
@@ -35,5 +38,12 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', 'Data', function($scope
 		return $scope.sortField === fieldName && $scope.reverse;
 	}
 
-	$scope.data = Data.query();
+	$scope.data = Data.query({
+		table: 'Table2',
+		format: 'json'
+	}, function() {
+		alert('yep');
+	}, function() {
+		alert('none');
+	});
 }]);
