@@ -67,14 +67,8 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				<tr ng-repeat="value in data | filter:searchInput | orderBy:sortField:reverse">
-					<td>{{value.Id}}</td>
-					<td>{{value.name}}</td>
-					<td>{{value.price}}</td>
-					<td>{{value.phase}}</td>
-					<td>{{value.publicationdate}}</td>
-					<td>{{value.regionName}}</td>
-					<td>{{value.subcategory}}</td>
+				<tr ng-repeat="row in data | filter:searchInput | orderBy:sortField:reverse">
+					<td  ng-repeat="value in row">{{value}}</td>
 				</tr>
 			</tbody>
 		</table>
