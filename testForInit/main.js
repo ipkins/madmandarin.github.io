@@ -32,7 +32,7 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		method: 'GET',
 		url: 'Table1.json'
 	}).then(function successCallback(response) {
-		console.log(response);
+		$scope.data = response.data.tenders;
 	}, function errorCallback(response) {
 		console.log(response);
 	});
