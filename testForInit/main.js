@@ -52,5 +52,11 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http)
 		});
 	});
 
-	console.log(table);
+	$scope.activeTable = undefined;
+	$scope.setTable = function(tableId) {
+		$scope.data = table[tableId].data;
+		$scope.activeTable = tableId;
+	}
+
+	$scope.setTable(0)
 }]);
