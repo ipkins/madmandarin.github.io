@@ -1,19 +1,9 @@
 'use strict';
-var testFrontEnd = angular.module('testFrontEnd', ['ngResource']);
-
-
-/* Factory */
-testFrontEnd.factory('Data', ['$resource', function($resource){
-	return $resource('https://madmandarin.github.io/testForInit/:table.:format', {
-		table: 'Table1',
-		format: 'json'
-	});
-}])
-
+var testFrontEnd = angular.module('testFrontEnd', []);
 
 
 /* Controllers */
-testFrontEnd.controller('tableCtrl', ['$scope', '$http', 'Data', function($scope, $http, Data){
+testFrontEnd.controller('tableCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.sortField = undefined;
 	$scope.reverse = false;
 
@@ -38,12 +28,14 @@ testFrontEnd.controller('tableCtrl', ['$scope', '$http', 'Data', function($scope
 		return $scope.sortField === fieldName && $scope.reverse;
 	}
 
-	$scope.data = Data.get({
-		table: 'Table2',
-		format: 'json'
-	}, function() {
-		alert('yep');
-	}, function(error) {
-		console.log(error);
+	$http({
+		method: 'GET',
+		url: 'Table1.json'
+	}).then(function successCallback(response) {
+		console.log(response);
+	}, function errorCallback(response) {
+		console.log(response);
 	});
+
+	
 }]);
