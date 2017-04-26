@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "pages.min.css",
+	"sources": [
+		"pages.scss",
+		"defs/config.scss",
+		"defs/mixins.scss"
+	],
+	"names": [],
+	"mappings": ""
+}

@@ -1,0 +1,63 @@
+/**
+		File version: 	1.0.0
+		Autor: 		Denis Sheremet
+		Contact author:
+					zaycakitayca@xaker.ru
+					https://vk.com/zaycakitayca
+**/
+
+
+@import 'defs/config';
+@import 'defs/mixins';
+
+/************************************************************************************************/
+
+@mixin color($code,$name){
+	@include cached_class("c#{$name}") {color: #{$code}}
+	@include cached_class("bg#{$name}") {background-color: #{$code}}
+	@include cached_class("brd#{$name}") {border-color: #{$code}}
+	@include cached_class("ol#{$name}") {outline-color: #{$code}}
+
+	.ch#{$name}:hover {@extend .c#{$name};}
+	.bgh#{$name}:hover {@extend .bg#{$name};}
+	.brdh#{$name}:hover {@extend .brd#{$name};}
+	.olh#{$name}:hover {@extend .ol#{$name};}
+
+	//:checked + .cc#{$name} {@extend .c#{$name};}
+	//:checked + .bgc#{$name} {@extend .bg#{$name};}
+	//:checked + .brdc#{$name} {@extend .brd#{$name};}
+	//:checked + .olc#{$name} {@extend .ol#{$name};}
+}
+@mixin gray($code){
+	@include color(to-lower-case("#"+$code+$code+$code),$code);
+}
+
+@include gray("0");
+@include gray("3");
+@include gray("8");
+@include gray("F");
+
+
+@include color(transparent,"Trans");
+@include color(inherit,"Inherit");
+
+@include color(#d4774b,"Orange");
+@include color(#bc5a2c,"DarkOrange");
+@include color(#6294c9,"Blue");
+@include color(#4a82bc,"DarkBlue");
+@include color(#84a95c,"Green");
+@include color(#6f9645,"DarkGreen");
+
+@for $i from 1 through 19 {
+	@include color("rgba(0,0,0,#{$i/20})","0-#{$i*5}-pc");
+}
+@for $i from 1 through 19 {
+	@include color("rgba(255,255,255,#{$i/20})","F-#{$i*5}-pc");
+}
+@for $i from 1 through 19 {
+	@include color("hsla(0,0%,100%,#{$i/20})","F-#{$i*5}-pc");
+}
+
+body {
+	@extend .c0,.bgF;
+}

@@ -1,0 +1,142 @@
+/**					
+		File version: 	1.0.0
+		Autor: 		Denis Sheremet
+		Contact author:	
+					zaycakitayca@xaker.ru
+					https://vk.com/zaycakitayca
+**/
+
+
+// Sizes
+
+@mixin media-between($min, $max) {
+	@media(max-width: #{$max+$scrollbar-width}px) and (min-width: #{$min+$scrollbar-width+1}px)	{@content}
+}
+@mixin media-less($max) {
+	@media(max-width: #{$max+$scrollbar-width}px)	{@content}
+}
+@mixin media-more($min) {
+	@media(min-width: #{$min+$scrollbar-width+1}px)	{@content}
+}
+
+@mixin media-mid		{@include media-between	($content-width + $content-margin, $design-width)			{@content}}
+@mixin media-small		{@include media-between	($content-width-min, $content-width + $content-margin)	{@content}}
+@mixin media-minimum	{@include media-less	($content-width-min)					{@content}}
+
+@mixin media-portrait()	{@media screen and (orientation:portrait)	{@content}}
+@mixin media-album()	{@media screen and (orientation:landscape)	{@content}}
+
+// Cache
+
+$cached: null !default;
+$cached_ids: null !default;
+$cache_enabled: true !default;
+$cache_debug_enabled: false;
+@mixin cache($key){
+	@if($cache_enabled){
+		//$cache_enabled: false !global;
+		$index: index($cached, $key);
+		@if($index){
+			$uuid: nth($cached_ids, $index);
+			@extend %#{$uuid};
+			@if($cache_debug_enabled){
+				@debug('Using ' + $uuid + ' as ' + $key);
+			}
+		}@else{
+			$uuid: unique-id();
+			$cached_ids: join($cached_ids, $uuid) !global;
+			@at-root %#{$uuid} {@content}
+			@extend %#{$uuid};
+			$cached: join($cached, $key) !global;
+			@if($cache_debug_enabled){
+				@debug('Registering ' + $key + ' as new cache entry ' + $uuid);
+			}
+		}
+		//$cache_enabled: true !global;
+	}@else{
+		@content;
+		@if($cache_debug_enabled){
+			@debug('Ignoring cache for ' + $key);
+		}
+	}
+}
+@mixin cached_class($classname){
+	.#{$classname} {
+		@include cache($classname){@content}
+	}
+}
+
+// Autoprefix
+
+@mixin autoprefix_key($property, $value) {
+	@include cache('autoprefix_key_' + $property + '_' + $value){
+		-webkit-#{$property}:			#{$value};
+		   -moz-#{$property}:			#{$value};
+			-ms-#{$property}:			#{$value};
+			 -o-#{$property}:			#{$value};
+				#{$property}:			#{$value};
+	}
+}
+@mixin autoprefix_value($property, $value) {
+	@include cache('autoprefix_value_' + $property + '_' + $value){
+				#{$property}:	-webkit-#{$value};
+				#{$property}:	   -moz-#{$value};
+				#{$property}:		-ms-#{$value};
+				#{$property}:		 -o-#{$value};
+				#{$property}:			#{$value};
+	}
+}
+@mixin autoprefix_both($property, $value) {
+	@include cache('autoprefix_both_' + $property + '_' + $value){
+		-webkit-#{$property}:	-webkit-#{$value};
+		   -moz-#{$property}:	   -moz-#{$value};
+			-ms-#{$property}:		-ms-#{$value};
+			 -o-#{$property}:		 -o-#{$value};
+				#{$property}:			#{$value};
+	}
+}
+
+// Compatibility
+
+@mixin transition($raw...)					{@include autoprefix_key(transition, $raw);}
+@mixin transition-delay($delay)				{@include autoprefix_key(transition-delay, $delay);}
+@mixin transition-duration($duration)		{@include autoprefix_key(transition-duration, $duration);}
+
+@mixin transform($value)					{@include autoprefix_key(transform, $value);}
+@mixin transform-origin($value)				{@include autoprefix_key(transform-origin, $value);}
+@mixin perspective($value)					{@include autoprefix_key(perspective, $value);}
+@mixin transform-style($value)				{@include autoprefix_key(transform-style, $value);}
+
+@mixin user-select($value)					{@include autoprefix_key(user-select, $value);}
+@mixin box-sizing($value)					{@include autoprefix_key(box-sizing, $value);}
+
+@mixin filter($value)						{@include autoprefix_key(filter, $value);}
+
+@mixin animation($value)					{@include autoprefix_key(animation, $value);}
+@mixin animation-duration($value)			{@include autoprefix_key(animation-duration, $value);}
+@mixin animation-delay($value)				{@include autoprefix_key(animation-delay, $value);}
+@mixin animation-iteration-count($value)	{@include autoprefix_key(animation-iteration-count, $value);}
+@mixin animation-play-state($value)			{@include autoprefix_key(animation-play-state, $value);}
+
+// Keyframes
+
+@mixin keyframes($name) {
+	$cache_enabled: false !global;
+	@-webkit-keyframes	#{$name}			{@content}
+	   @-moz-keyframes	#{$name}			{@content}
+		@-ms-keyframes	#{$name}			{@content}
+		 @-o-keyframes	#{$name}			{@content}
+			@keyframes	#{$name}			{@content}
+	$cache_enabled: true !global;
+}
+
+// Placeholder
+
+@mixin placeholder {
+	$cache_enabled: false !global;
+	&::-webkit-input-placeholder			{@content}
+	&::-moz-placeholder						{@content}
+	&:-moz-placeholder						{@content}
+	&:-ms-input-placeholder					{@content}
+	$cache_enabled: true !global;
+}

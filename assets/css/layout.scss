@@ -1,0 +1,82 @@
+/**
+		File version: 	1.0.0
+		Autor: 		Denis Sheremet
+		Contact author:
+					zaycakitayca@xaker.ru
+					https://vk.com/zaycakitayca
+**/
+
+
+@import 'defs/config';
+@import 'defs/mixins';
+
+/************************************************************************************************/
+
+html {
+	font-size: 1px;
+	font-size: #{100/($design-width + $scrollbar-width)}vw;
+	font-size: calc(100vw / #{$design-width + $scrollbar-width});
+}
+@include media-mid {
+	html {font-size: 1px;}
+}
+@include media-small {
+	html {
+		font-size: #{100/($content-width + $scrollbar-width + $content-margin)}vw;
+		font-size: calc(100vw / #{$content-width + $scrollbar-width + $content-margin});
+	}
+}
+@include media-minimum {
+	html {
+		font-size: #{$content-width-min/($content-width + $scrollbar-width + $content-margin)}px;
+		font-size: calc(#{$content-width-min}px / #{($content-width+$scrollbar-width + $content-margin)});
+	}
+}
+
+body {
+	@include cache("f-16"){font-size: 16rem;}
+}
+
+/************************************************************************************************/
+
+.body {
+	min-width: #{$content-width + $content-margin - $scrollbar-width}rem;
+	min-width: calc(#{$content-width + $content-margin}rem - #{$scrollbar-width}px);
+	@include cache("relative"){position: relative;}
+	@include cache("o-hidden"){overflow: hidden;}
+	@include cache("ws-nowrap"){white-space: nowrap;}
+}
+.body:before {
+	@include cache("pseudo-content-empty") {content: '';}
+	@include cache("w-50-pc"){width: 50%;}
+	@include cache("h-1"){height: 1rem}; /*any number, but not 100% or 0*/
+	@include cache("inblock"){display: inline-block;}
+	@include cache("invisible"){visibility: hidden;}
+}
+.wrapper {
+	@include cache("w-#{$design-width}"){width: #{$design-width}rem;}
+	@include cache("relative"){position: relative;}
+	@include cache("inblock"){display: inline-block;}
+	left: -#{$design-width/2}rem;
+
+	@include cache("ws-normal"){white-space: normal;}
+	@include cache("valign-top"){vertical-align: top;}
+	@include cache("o-hidden"){overflow: hidden;}
+}
+.block {
+	height: auto;
+	@include cache("relative"){position: relative;}
+}
+.content {
+	@include cache("w-#{$content-width}"){width: #{$content-width}rem;}
+	@include cache("m-a-auto"){margin: auto;}
+	@include cache("relative"){position: relative;}
+}
+.content_winsize {
+	min-width: #{$content-width}rem;
+	max-width: #{$design-width}rem;
+	width: 100vw;
+	width: calc(100vw - #{$scrollbar-width}px);
+	@include cache("m-a-auto"){margin: auto;}
+	@include cache("relative"){position: relative;}
+}

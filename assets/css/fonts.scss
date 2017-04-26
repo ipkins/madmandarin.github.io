@@ -1,0 +1,84 @@
+/**
+		File version: 	1.0.0
+		Autor: 		Denis Sheremet
+		Contact author:
+					zaycakitayca@xaker.ru
+					https://vk.com/zaycakitayca
+**/
+
+
+@import 'defs/config';
+@import 'defs/mixins';
+
+/************************************************************************************************/
+
+@mixin font-face($name,$fsname,$weight) {
+	@font-face {
+		font-family: #{$name};
+		font-weight: #{$weight};
+		src: url('../fonts/#{$fsname}.eot');
+		src: url('../fonts/#{$fsname}.woff') format('woff'), url('../fonts/#{$fsname}.ttf') format('truetype'), url('../fonts/#{$fsname}.svg') format('svg');
+	}
+}
+@mixin font-face-style($name,$fsname,$weight,$style) {
+	@font-face {
+		font-family: #{$name};
+		font-weight: #{$weight};
+		font-style: #{$style};
+		src: url('../fonts/#{$fsname}.eot');
+		src: url('../fonts/#{$fsname}.woff') format('woff'), url('../fonts/#{$fsname}.ttf') format('truetype'), url('../fonts/#{$fsname}.svg') format('svg');
+	}
+}
+@mixin font-face-local($name,$fsname,$weight,$localname) {
+	@font-face {
+		font-family: #{$name};
+		font-weight: #{$weight};
+		src: url('../fonts/#{$fsname}.eot');
+		src: local('#{$localname}'), url('../fonts/#{$fsname}.woff') format('woff'), url('../fonts/#{$fsname}.ttf') format('truetype'), url('../fonts/#{$fsname}.svg') format('svg');
+	}
+}
+@mixin font-face-local-style($name,$fsname,$weight,$localname,$style) {
+	@font-face {
+		font-family: #{$name};
+		font-weight: #{$weight};
+		font-style: #{$style};
+		src: url('../fonts/#{$fsname}.eot');
+		src: local('#{$localname}'), url('../fonts/#{$fsname}.woff') format('woff'), url('../fonts/#{$fsname}.ttf') format('truetype'), url('../fonts/#{$fsname}.svg') format('svg');
+	}
+}
+@mixin font-class($name,$class) {
+	.#{$class} , .#{$class}-before:before , .#{$class}-after:after {
+		font-family: #{$name},helvetica,sans-serif;
+	}
+}
+@mixin font-class-icon($name,$class) {
+	.#{$class} , .#{$class}-before:before , .#{$class}-after:after {
+		font-family: #{$name},sans-serif;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+
+@include font-face(ProximaNova,ProximaNovaLight,300);
+@include font-face(ProximaNova,ProximaNovaRegular,400);
+@include font-face(ProximaNova,ProximaNovaBold,600);
+
+@include font-class(ProximaNova,proximaNova);
+
+
+//@include font-face(Icon,icon,400);
+
+//@include font-class-icon(Icon,icon);
+
+
+body {
+	@extend .proximaNova;
+	@include cache("lh-120-pc")		{line-height: 1.2;}
+	@include cache("fw-400")		{font-weight: 400;}
+}

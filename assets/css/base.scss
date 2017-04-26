@@ -1,0 +1,400 @@
+/**
+		File version: 	1.0.0
+		Autor: 		Denis Sheremet
+		Contact author:
+					zaycakitayca@xaker.ru
+					https://vk.com/zaycakitayca
+**/
+
+
+@import 'defs/config';
+@import 'defs/mixins';
+
+/************************************************************************************************/
+
+* {
+	@include cache("m-a-0")				{margin: 0;}
+	@include cache("p-a-0")				{padding: 0;}
+
+	@include cache("ol-0")				{outline: none;}
+	outline-offset: 0;
+
+	@include cache("brd-a-0")			{border: 0 none;}
+	box-shadow: none;
+	background: none;
+
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+
+	text-align: inherit;
+	@include cache("valign-inherit")	{vertical-align: inherit;}
+
+	text-decoration: inherit;
+	color: inherit;
+
+	white-space: inherit;
+
+	line-height: inherit;
+
+	cursor: default;
+}
+
+html,body {@extend .h-100-pc;}
+
+@include cached_class("pointer-none") {pointer-events: none;}
+//.wrapper, .body:before {@extend .pointer-none}
+img  {@extend .pointer-none}
+
+@include cached_class("select-none") {
+	@include user-select("auto");
+}
+body {@extend .select-none}
+
+@include cached_class("pointer-auto") {pointer-events: auto;}
+a, input, select, textarea, button, label {
+	@extend .pointer-auto;
+	@extend .relative;
+}
+iframe {
+	@extend .pointer-auto;
+}
+@include cached_class("select-text") {@include user-select("text");}
+input,textarea {@extend .select-text}
+
+@include cached_class("select-all") {
+	@include user-select("all");
+}
+
+input , textarea , .select-all , .select-all * , .select-text , .select-text * {
+	cursor: text;
+}
+a , a * , button , button * , label , label * , input[type=button] , input[type=reset] , input[type=submit], select {
+	cursor: pointer;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+sup,sub {
+	font-size: .625em;
+}
+sup {
+	@extend .valign-top;
+}
+sub {
+	@extend .valign-bottom;
+}
+
+b, strong {
+	@extend .bold;
+}
+
+textarea {
+	resize: none;
+}
+
+/************************************************************************************************/
+
+@include cached_class("relative")		{position: relative;}
+@include cached_class("absolute")		{position: absolute;}
+@include cached_class("fixed")			{position: fixed;}
+
+@include cached_class("top")			{top:0;}
+@include cached_class("bottom")			{bottom:0;}
+@include cached_class("left")			{left:0;}
+@include cached_class("right")			{right:0;}
+
+@include cached_class("top-100-pc")		{top:100%;}
+@include cached_class("bottom-100-pc")	{bottom:100%;}
+@include cached_class("left-100-pc")	{left:100%;}
+@include cached_class("right-100-pc")	{right:100%;}
+
+@include cached_class("wrap-left")		{left: -#{$design-width}rem;}
+@include cached_class("wrap-right")		{right: -#{$design-width}rem;}
+@include cached_class("wrap-top")		{top: -#{$design-width}rem;}
+@include cached_class("wrap-bottom")	{bottom: -#{$design-width}rem;}
+
+@include cached_class("inblock")		{display: inline-block;}
+@include cached_class("nodisplay")		{display: none;}
+
+@include cached_class("visible")		{visibility: visible;}
+@include cached_class("invisible")		{visibility: hidden;}
+
+@include cached_class("pull-left")		{float: left;}
+@include cached_class("pull-right")		{float: right;}
+
+.clear {
+	&:after {
+		$cache_enabled: false !global;
+		@include cache("pseudo-content-empty")	{content: '';}
+		@include cache("display-block")			{display: block;}
+		@include cache("h-0")					{height: 0;}
+		@extend .invisible;
+		clear: both;
+		$cache_enabled: true !global;
+	}
+}
+
+@include cached_class("content-box")		{@include box-sizing(content-box);}
+@include cached_class("border-box")			{@include box-sizing(border-box);}
+
+@include cached_class("valign-top")			{vertical-align: top;}
+@include cached_class("valign-middle")		{vertical-align: middle;}
+@include cached_class("valign-bottom")		{vertical-align: bottom;}
+@include cached_class("valign-baseline")	{vertical-align: baseline;}
+
+//@for $i from 0 through 20 {@include cached_class("valign-#{$i*5}-pc") {vertical-align:#{percentage($i*5/100)}}}
+
+.valign-helper:before , .valign-helper-after:after {
+	@include cache("valign-helper-pseudo") {
+		$cache_enabled: false !global;
+		@include cache("pseudo-content-empty") {content: '';}
+		@include cache("inblock") {display: inline-block;}
+		@include cache("h-100-pc") {height: 100%;}
+		min-height: inherit;
+		@include cache("w-0") {width: 0;}
+		@include cache("invisible") {visibility: hidden;}
+		@include cache("valign-inherit") {vertical-align: inherit;}
+		$cache_enabled: true !global;
+	}
+}
+.valign-middle-hack {
+	@extend .valign-middle;
+	&:before{@include cache("valign-helper-pseudo");}
+}
+.valign-bottom-hack {
+	@extend .valign-bottom;
+	&:before{@include cache("valign-helper-pseudo");}
+}
+
+.valign-middle-icon {
+	&:before {
+		$cache_enabled: false !global;
+		@include cache("pseudo-content-empty")	{content: '';}
+		@include cache("display-block")			{display: block;}
+		@include cache("relative")				{position: relative;}
+		@include cache("h-50-pc")				{height: 50%;}
+		margin-bottom: -.5em;
+		@include cache("invisible")				{visibility: hidden;}
+		$cache_enabled: true !global;
+	}
+}
+
+@include cached_class("text-left")			{text-align: left;}
+@include cached_class("text-right")			{text-align: right;}
+@include cached_class("text-center")		{text-align: center;}
+@include cached_class("text-justify")		{text-align: justify;}
+
+.text-justify-hack {
+	@extend .text-justify;
+	&:after {
+		$cache_enabled: false !global;
+		@include cache("pseudo-content-empty")	{content: '';}
+		@include cache("inblock")				{display: inline-block;}
+		@include cache("w-100-pc")				{width: 100%;}
+		@include cache("h-0")					{height: 0;}
+		@include cache("invisible")				{visibility: hidden;}
+		$cache_enabled: true !global;
+	}
+}
+@include cached_class("text-justify-hack-fix")	{margin-bottom: -1em;}	// To be refactored somehow. Usage: text-justify-hack text-justify-hack-fix lh-100-pc
+
+@include cached_class("rtl")		{direction: rtl;}
+@include cached_class("ltr")		{direction: ltr;}
+
+@include cached_class("ontop")		{@extend .zi-1;}		// Transitional
+@include cached_class("onmiddle")	{@extend .zi-0;}		// Transitional
+@include cached_class("onbottom")	{@extend .zi--1;}		// Transitional
+
+@include cached_class("thin")		{@extend .fw-100;}		// Transitional
+@include cached_class("light")		{@extend .fw-200;}		// Transitional
+@include cached_class("regular")	{@extend .fw-300;}		// Transitional
+@include cached_class("normal")		{@extend .fw-400;}		// Transitional
+@include cached_class("bold")		{@extend .fw-700;}		// Transitional
+@include cached_class("boldest")	{@extend .fw-900;}		// Transitional
+
+@include cached_class("italic")		{font-style: italic;}
+@include cached_class("underline")	{text-decoration: underline;}
+
+@include cached_class("upper")		{text-transform: uppercase;}
+@include cached_class("lower")		{text-transform: lowercase;}
+
+.upper-first {
+	&:first-letter {
+		@extend .upper;
+	}
+}
+
+@include cached_class("ws-normal")	{white-space: normal;}
+@include cached_class("ws-nowrap")	{white-space: nowrap;}
+
+@include cached_class("o-hidden")	{overflow: hidden;}
+@include cached_class("o-visible")	{overflow: visible;}
+@include cached_class("o-auto")		{overflow: auto;}
+
+@include cached_class("clip-all")	{clip: rect(auto,auto,auto,auto);}
+@include cached_class("clip-lr")	{clip: rect(#{- $design-width}rem,auto,#{$design-width}rem,auto);}
+@include cached_class("clip-l")		{clip: rect(#{- $design-width}rem,#{$design-width}rem,#{$design-width}rem,auto);}
+@include cached_class("clip-r")		{clip: rect(#{- $design-width}rem,auto,#{$design-width}rem,#{- $design-width}rem);}
+@include cached_class("clip-tb")	{clip: rect(auto,#{$design-width}rem,auto,#{- $design-width}rem);}
+@include cached_class("clip-t")		{clip: rect(auto,#{$design-width}rem,#{$design-width}rem,#{- $design-width}rem);}
+@include cached_class("clip-b")		{clip: rect(#{- $design-width}rem,#{$design-width}rem,auto,#{- $design-width}rem);}
+@include cached_class("clip--l")	{clip: rect(auto,auto,auto,#{- $design-width}rem);}
+@include cached_class("clip--r")	{clip: rect(auto,#{$design-width}rem,auto,auto);}
+@include cached_class("clip--t")	{clip: rect(#{- $design-width}rem,auto,auto,auto);}
+@include cached_class("clip--b")	{clip: rect(auto,auto,#{$design-width}rem,auto);}
+
+@include cached_class("no-list")		{list-style-type: none;}
+@include cached_class("square-list")	{list-style-type: square;}
+
+@include cached_class("inside-list")	{list-style-position: inside;}
+
+@include cached_class("bg-cover")		{background-size: cover;}
+@include cached_class("bg-contain")		{background-size: contain;}
+
+@include cached_class("bg-no-repeat")	{background-repeat: no-repeat;}
+@include cached_class("bg-repeat-x")	{background-repeat: repeat-x;}
+@include cached_class("bg-repeat-y")	{background-repeat: repeat-y;}
+
+@include cached_class("bg-top")			{background-position: top;}
+@include cached_class("bg-center")		{background-position: center;}
+@include cached_class("bg-bottom")		{background-position: bottom;}
+@include cached_class("bg-left")		{background-position: left;}
+@include cached_class("bg-right")		{background-position: right;}
+
+@include cached_class("bg-100-pc-auto")	{background-size: 100% auto;}
+@include cached_class("bg-auto-100-pc")	{background-size: 100% auto;}
+
+@include cached_class("table-fixed")	{table-layout: fixed;}
+
+@include cached_class("counter-start")	{counter-reset: Q;}
+.counter-get:before , .counter-get-after:after {
+	@include cache("counter-get") {
+		content: counter(Q);
+		counter-increment: Q;
+	}
+}
+
+@include cached_class("circled")	{border-radius: 100%;}
+@include cached_class("rounded")	{border-radius: #{$design-width}rem;}
+
+/************************************************************************************************/
+
+@for $i from 1 through 35 {
+	@include cached_class("rounded-#{$i}")	{border-radius: #{$i}rem;}
+}
+
+/************************************************************************************************/
+
+@include cached_class("m-a-auto") {margin: auto;}
+@for $i from 0 through 9 {@include cached_class("m-a-#{$i}") {margin:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("m-a-#{$i*5}") {margin:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("m-t-#{$i}") {margin-top:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("m-t-#{$i*5}") {margin-top:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("m-b-#{$i}") {margin-bottom:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("m-b-#{$i*5}") {margin-bottom:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("m-r-#{$i}") {margin-right:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("m-r-#{$i*5}") {margin-right:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("m-l-#{$i}") {margin-left:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("m-l-#{$i*5}") {margin-left:#{$i*5}rem}}
+
+@for $i from 0 through 9 {@include cached_class("p-a-#{$i}") {padding:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("p-a-#{$i*5}") {padding:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("p-t-#{$i}") {padding-top:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("p-t-#{$i*5}") {padding-top:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("p-b-#{$i}") {padding-bottom:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("p-b-#{$i*5}") {padding-bottom:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("p-r-#{$i}") {padding-right:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("p-r-#{$i*5}") {padding-right:#{$i*5}rem}}
+@for $i from 0 through 9 {@include cached_class("p-l-#{$i}") {padding-left:#{$i}rem}}
+@for $i from 2 through 52 {@include cached_class("p-l-#{$i*5}") {padding-left:#{$i*5}rem}}
+
+@for $i from 0 through 9 {@include cached_class("w-#{$i}") {width:#{$i}rem}}
+@for $i from 2 through $design-width/5 {@include cached_class("w-#{$i*5}") {width:#{$i*5}rem}}
+@for $i from 1 through 20 {@include cached_class("w-#{$i*5}-pc") {width:#{percentage($i*5/100)}}}
+@for $i from 0 through 9 {@include cached_class("h-#{$i}") {height:#{$i}rem}}
+@for $i from 2 through $design-width/5 {@include cached_class("h-#{$i*5}") {height:#{$i*5}rem}}
+@for $i from 1 through 20 {@include cached_class("h-#{$i*5}-pc") {height:#{percentage($i*5/100)}}}
+
+@for $i from 6 through 400 {@include cached_class("f-#{$i}") {font-size:#{$i}rem}}
+@for $i from 1 through 9 {@include cached_class("fw-#{$i*100}") {font-weight:#{$i*100}}}
+@for $i from 20 through 40 {@include cached_class("lh-#{$i*5}-pc") {line-height: #{$i/20}}}
+@for $i from 6 through 400 {@include cached_class("lh-#{$i}") {line-height:#{$i}rem}}
+@for $i from 1 through 100 {@include cached_class("ls-#{$i*10}") {letter-spacing:#{$i/100}em}}
+
+@include cached_class("brd-a-0") {border: 0 none;}
+@for $i from 1 through 9 {@include cached_class("brd-a-#{$i}") {border:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("brd-a-#{$i*5}") {border:#{$i*5}rem solid transparent}}
+
+@include cached_class("brd-t-0") {border-top: 0 none;}
+@for $i from 1 through 9 {@include cached_class("brd-t-#{$i}") {border-top:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("brd-t-#{$i*5}") {border-top:#{$i*5}rem solid transparent}}
+
+@include cached_class("brd-b-0") {border-bottom: 0 none;}
+@for $i from 1 through 9 {@include cached_class("brd-b-#{$i}") {border-bottom:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("brd-b-#{$i*5}") {border-bottom:#{$i*5}rem solid transparent}}
+
+@include cached_class("brd-r-0") {border-right: 0 none;}
+@for $i from 1 through 9 {@include cached_class("brd-r-#{$i}") {border-right:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("brd-r-#{$i*5}") {border-right:#{$i*5}rem solid transparent}}
+
+@include cached_class("brd-l-0") {border-left: 0 none;}
+@for $i from 1 through 9 {@include cached_class("brd-l-#{$i}") {border-left:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("brd-l-#{$i*5}") {border-left:#{$i*5}rem solid transparent}}
+
+@include cached_class("ol-0") {outline: none;}
+@for $i from 1 through 9 {@include cached_class("ol-#{$i}") {outline:#{$i}rem solid transparent}}
+@for $i from 2 through 52 {@include cached_class("ol-#{$i*5}") {outline:#{$i*5}rem solid transparent}}
+
+/************************************************************************************************/
+
+@for $i from 1 through 10 {
+	.trans-#{$i*100} {
+		@include transition(all #{$i/10}s);
+	}
+}
+
+/************************************************************************************************/
+
+@for $i from 0 through 20 {
+	@include cached_class("opac-#{$i*5}") {
+		opacity: #{0.05 * $i};
+	}
+}
+
+/************************************************************************************************/
+
+@for $i from -5 through 5 {
+	@include cached_class("zi-#{$i}") {
+		z-index: #{$i};
+	}
+}
+
+/************************************************************************************************/
+
+[type="checkbox"]:checked + .toggle-fade,
+[type="radio"]:not(:checked) + .toggle-fade
+{
+	@extend .opac-0;
+	& , * {
+		@extend .pointer-none;
+	}
+}
+
+[type="checkbox"]:checked + .toggle-slide-left,
+[type="radio"]:not(:checked) + .toggle-slide-left
+{@include transform(translateX(-100%));}
+
+[type="checkbox"]:checked + .toggle-slide-right,
+[type="radio"]:not(:checked) + .toggle-slide-right
+{@include transform(translateX(100%));}
+
+[type="checkbox"]:checked + .toggle-slide-top,
+[type="radio"]:not(:checked) + .toggle-slide-top
+{@include transform(translateY(-100%));}
+
+[type="checkbox"]:checked + .toggle-slide-bottom,
+[type="radio"]:not(:checked) + .toggle-slide-bottom
+{@include transform(translateY(100%));}
