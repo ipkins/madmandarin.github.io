@@ -116,7 +116,7 @@
 				{name: 'Князев'},
 				{name: 'Варя Кот'},
 				{name: 'Лидия'},
-				{name: 'Chianatsu Bot'},
+				{name: 'Chinatsu Bot'},
 				{name: 'Дмитрий Соколов'}
 			],
 			edges: [
@@ -142,12 +142,12 @@
 				 {src: 'Денис Лавриков', dest: "Денис Шеремет"},
 				 {src: 'Александр Сапожников', dest: "Дарья Вейдер-Авалон"},
 				 {src: 'Max /b/', dest: "Бет"},
-				 {src: 'Здос', dest: "Александр Кудрявцев"},
+				 {src: 'Здос', dest: "Лоллич"},
 				 {src: 'Яна К', dest: "Денис Лавриков"},
 				 {src: 'Князев', dest: "Илья Кац"},
 				 {src: 'Варя Кот', dest: "Варя Вилюжанина"},
 				 {src: 'Лидия', dest: "Сергей Серёгин"},
-				 {src: 'Chianatsu Bot', dest: "Илья Кац"},
+				 {src: 'Chinatsu Bot', dest: "Илья Кац"},
 			]
 		}
 		$.each(data.nodes, function(i,node){
