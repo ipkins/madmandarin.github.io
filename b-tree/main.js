@@ -149,7 +149,7 @@
 				 {src: 'Варя Кот', dest: "Варя Вилюжанина"},
 				 {src: 'Лидия', dest: "Дмитрий Соколов"},
 				 {src: 'Chinatsu Bot', dest: "Илья Кац"}, 
-				 {src: 'Миша Леон', dest: "Денис Шеремет"},
+				 {src: 'Миша Леон', dest: "Денис Шеремет"}, 
 			]
 		}
 		$.each(data.nodes, function(i,node){
