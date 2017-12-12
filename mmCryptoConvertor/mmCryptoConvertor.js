@@ -29,9 +29,9 @@ var mmCryptoConvertor = function(option) {
 		}
 	};
 /* ----------------------------- end view ------------------------------ */
-	
+
 /* ---------------------------- begin model ---------------------------- */
-	
+
 	var model = {
 		currentRates: null,
 
@@ -68,13 +68,13 @@ var mmCryptoConvertor = function(option) {
 	};
 /* ----------------------------- end model ----------------------------- */
 /* -------------------------- begin controller ------------------------- */
-	
+
 	var controller = {
 		inputs: {
 			text: [],
 			select: []
 		},
-		
+
 
 		start: function() {
 			this.inputs.text.push(document.getElementById(option.controlId.firstInput));
@@ -97,7 +97,7 @@ var mmCryptoConvertor = function(option) {
 
 		update: function(num) {
 			if (!num) {
-				var res = this.inputs.text[0].value * model.currentRates; 
+				var res = this.inputs.text[0].value * model.currentRates;
 				res = Math.round(res * 100000000) / 100000000;
 				this.inputs.text[1].value = res;
 			} else {
@@ -136,20 +136,20 @@ var mmCryptoConvertor = function(option) {
 				}
 			}
 		};
-		
+
 		app.init();
 	}());
 /* --------------------- anonymous initialize function ----------------- */
 
 /* --------------------- returned object ----------------- */
 	var obj = {
-		text: 'хуй'
+		text: ''
 	};
 
 	return obj;
 
 /* --------------------- end returned object ----------------- */
-	
+
 };
 
 var option = {

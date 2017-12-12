@@ -159,13 +159,13 @@ var main = function(option) {
 				var tr 		= document.createElement("tr");
 				var placeClass = 'place ';
 				switch (item.color) {
-					case '1': 
+					case '1':
 						placeClass += 'bgGreen';
 						break;
-					case '2': 
+					case '2':
 						placeClass += 'bgLightGreen';
 						break;
-					case '4': 
+					case '4':
 						placeClass += 'bgRed';
 						break;
 				}
@@ -185,9 +185,9 @@ var main = function(option) {
 		}
 	};
 /* ----------------------------- end view ------------------------------ */
-	
+
 /* ---------------------------- begin model ---------------------------- */
-	
+
 	var model = {
 		data: null,
 		status: null,
@@ -208,15 +208,15 @@ var main = function(option) {
 				}
 			};
 			xhr.send();
-		},		
+		},
 	};
 /* ----------------------------- end model ----------------------------- */
 /* -------------------------- begin controller ------------------------- */
-	
+
 	var controller = {
 		start: function() {
 			model.table = view.createTable(document.body, 'mainTable');
-			model.getJSON('https://madmandarin.github.io/seriea.json', controller.fillTable);
+			model.getJSON('https://madmandarin.github.io/sport/seriea.json', controller.fillTable);
 		},
 		fillTable: function(sort = 7) {
 			if (model.sort == sort) {
@@ -241,7 +241,7 @@ var main = function(option) {
 				document.addEventListener("DOMContentLoaded", controller.start);
 			}
 		};
-		
+
 		app.init();
 	}());
 /* --------------------- anonymous initialize function ----------------- */
@@ -250,7 +250,7 @@ var main = function(option) {
 	};
 	return obj;
 /* --------------------- end returned object ----------------- */
-	
+
 };
 
 var tableControl = main();
