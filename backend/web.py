@@ -17,9 +17,9 @@ def status_json():
 def status_json():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
-        rcon = mcrcon.MCRcon()
-        rcon.connect('localhost', 27014, '271271')
-        data = rcon.command('/ban ' + request.form['nick'])
+            rcon = mcrcon.MCRcon()
+            rcon.connect('localhost', 27014, '271271')
+            data = rcon.command('/ban ' + request.form['nick'])
     else:
         data = 'Ошибка авторизации'
 
