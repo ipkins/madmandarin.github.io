@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/rest/minecraft/list')
 def status_json():
     rcon = mcrcon.MCRcon()
-    rcon.connect('localhost', 27014, 271271)
+    rcon.connect('localhost', 27014, '271271')
     test = rcon.command('/list')
     data = ''
     if test:
