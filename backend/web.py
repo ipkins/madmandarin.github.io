@@ -4,7 +4,7 @@ import mcrcon
 app = Flask(__name__)
 
 @app.route('/rest/minecraft/list')
-def status_json():
+def user_list():
     rcon = mcrcon.MCRcon()
     rcon.connect('localhost', 27014, '271271')
     data = rcon.command('/list')
@@ -14,7 +14,7 @@ def status_json():
     })
 
 @app.route('/rest/minecraft/ban')
-def status_json():
+def ban_player():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
             rcon = mcrcon.MCRcon()
@@ -28,7 +28,7 @@ def status_json():
     })
 
 @app.route('/rest/minecraft/kick')
-def status_json():
+def kick_player():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
             rcon = mcrcon.MCRcon()
@@ -44,7 +44,7 @@ def status_json():
     })
 
 @app.route('/rest/minecraft/restart')
-def status_json():
+def server_restart():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
             rcon = mcrcon.MCRcon()
