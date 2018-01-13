@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
+from flask_cors import CORS                           
 import mcrcon
 
 app = Flask(__name__)
+CORS(app, resources={'/rest/*': {'origins': '*'}})
 
 @app.route('/rest/minecraft/list')
 def user_list():
