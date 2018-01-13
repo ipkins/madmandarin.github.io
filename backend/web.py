@@ -24,35 +24,39 @@ def status_json():
         data = 'Ошибка авторизации'
 
     return jsonify({
-        "result": data;
+        "result": data
     })
 
 @app.route('/rest/minecraft/kick')
 def status_json():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
-        rcon = mcrcon.MCRcon()
-        rcon.connect('localhost', 27014, '271271')
-        data = rcon.command('/kick ' + request.form['nick'])
+            rcon = mcrcon.MCRcon()
+            rcon.connect('localhost', 27014, '271271')
+            data = rcon.command('/kick ' + request.form['nick'])
+        else:
+            data = 'Ошибка авторизации'
     else:
-        data = 'Ошибка авторизации'
+        data = 'Ошибка запроса'
 
     return jsonify({
-        "result": data;
+        "result": data
     })
 
 @app.route('/rest/minecraft/restart')
 def status_json():
     if request.method == 'POST':
         if request.form['password'] == 'kWb1QY8d':
-        rcon = mcrcon.MCRcon()
-        rcon.connect('localhost', 27014, '271271')
-        data = rcon.command('/stop')
+            rcon = mcrcon.MCRcon()
+            rcon.connect('localhost', 27014, '271271')
+            data = rcon.command('/stop')
+        else:
+            data = 'Ошибка авторизации'
     else:
-        data = 'Ошибка авторизации'
+        data = 'Ошибка запроса'
 
     return jsonify({
-        "result": data;
+        "result": data
     })
 
 if __name__ == "__main__":
