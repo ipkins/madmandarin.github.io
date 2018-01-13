@@ -7,12 +7,10 @@ app = Flask(__name__)
 def status_json():
     rcon = mcrcon.MCRcon()
     rcon.connect('localhost', 27014, '271271')
-    test = rcon.command('/list')
-    data = ''
-    if test:
-        data = test
+    data = rcon.command('/list')
+
     return jsonify({
-        "test": data
+        "users": sorted(x.strip() for x in data.split(':')[1].split(','))
     })
 
 if __name__ == "__main__":
