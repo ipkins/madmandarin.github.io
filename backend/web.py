@@ -13,7 +13,7 @@ def user_list():
     user_string = data.split(':')[1]
     users = []
     if user_string != '':
-        users = sorted(x.strip() for x in .split(','))
+        users = sorted(x.strip() for x in user_string.split(','))
     return jsonify({
         "users": users
     })
