@@ -10,9 +10,12 @@ def user_list():
     rcon = mcrcon.MCRcon()
     rcon.connect('localhost', 27014, '271271')
     data = rcon.command('/list')
-
+    user_string = data.split(':')[1]
+    users = []
+    if user_string != '':
+        users = sorted(x.strip() for x in .split(','))
     return jsonify({
-        "users": sorted(x.strip() for x in data.split(':')[1].split(','))
+        "users": users
     })
 
 @app.route('/rest/minecraft/ban')
